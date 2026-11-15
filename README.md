@@ -122,6 +122,7 @@ python run.py
 - 身份证号等敏感字段不通过接口收集与返回，数据库保留加密列与脱敏视图
 
 ## Git 分支规范
+- 远程仓库：https://github.com/hoxhao362-ux/online-education-platform
 - `main`：主分支，保持稳定可运行
 - `dev/dao`：实体类与 DAO 层（陈涛）
 - `dev/service`：Service 业务层（王彭凯）
