@@ -2,7 +2,7 @@
 应用工厂
 负责创建 Flask 应用、注册蓝图、注册统一异常处理与数据库生命周期管理。
 """
-from flask import Flask
+from flask import Flask, request
 from werkzeug.exceptions import HTTPException
 
 from app.config import Config
@@ -22,6 +22,16 @@ def create_app(config_class=Config) -> Flask:
 
     _register_error_handlers(app)
     _register_blueprints(app)
+
+    @app.after_request
+    def add_security_headers(response):
+        """代码评审补充：统一安全响应头，禁止缓存含个人信息的数据"""
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["Referrer-Policy"] = "no-referrer"
+        if request.path.startswith("/api/"):
+            response.headers["Cache-Control"] = "no-store"
+        return response
 
     @app.get("/api/health")
     def health():
