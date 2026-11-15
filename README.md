@@ -31,7 +31,10 @@ online_education_platform/
 ```
 
 ## 分层职责
-<!-- LAYER_NOTES -->
+### DAO 层
+- 只负责 SQL 执行与结果映射，不包含业务规则
+- 包含 StudentDao、TeacherDao、CourseDao、ScoreDao 四个数据访问对象
+- 提供账号查询、注册、资料修改、课程 CRUD、选课记录维护、成绩读写及多表关联查询
 
 ## 快速启动
 
