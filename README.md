@@ -36,6 +36,15 @@ online_education_platform/
 - 包含 StudentDao、TeacherDao、CourseDao、ScoreDao 四个数据访问对象
 - 提供账号查询、注册、资料修改、课程 CRUD、选课记录维护、成绩读写及多表关联查询
 
+### Service 层
+- 封装业务规则，调用一个或多个 DAO 完成业务组合
+- 负责账号唯一性、密码加密、课程归属、重复选课、分数范围等校验
+- 业务失败统一抛出 BusinessException 子类，不向 Controller 暴露数据库异常
+
+### Controller 层
+- 只负责请求接收、基础入参校验、身份鉴权、调用 Service 与统一响应
+- 按用户认证、课程、选课、成绩四组蓝图组织接口
+
 ## 快速启动
 
 ```bash
