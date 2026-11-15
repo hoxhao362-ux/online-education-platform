@@ -31,7 +31,10 @@ online_education_platform/
 ```
 
 ## 分层职责
-<!-- LAYER_NOTES -->
+### Service 层
+- 封装业务规则，调用一个或多个 DAO 完成业务组合
+- 负责账号唯一性、密码加密、课程归属、重复选课、分数范围等校验
+- 业务失败统一抛出 BusinessException 子类，不向 Controller 暴露数据库异常
 
 ## 快速启动
 
